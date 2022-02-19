@@ -1,0 +1,18 @@
+.card {
+  /* background-color: rgb(168, 162, 162); */
+  border-radius: 15px;
+  outline: none;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.grid-image {
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  object-fit: cover;
+  border-radius: 20px;
+}

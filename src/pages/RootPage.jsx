@@ -1,14 +1,14 @@
-import React from 'react'
-import Navbar from '../components/Navbar/Navbar'
-import ImageContainer from '../components/ImageContainer/ImageContainer'
+import React from "react";
+import Navbar from "../components/Navbar/Navbar";
+import ImageView from "../components/ImageView/ImageView";
 
 function RootPage() {
-    return (
-        <div>
-            <Navbar />
-            <ImageContainer />
-        </div>
-    )
+  return (
+    <div>
+      <Navbar />
+      <ImageView />
+    </div>
+  );
 }
 
-export default RootPage
+export default RootPage;
