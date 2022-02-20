@@ -16,7 +16,7 @@ const getAuthorizationClient = () =>
 const fetchDefaultImageCollection = async (pageNumber) => {
   try {
     const response = await getAuthorizationClient().get(
-      `https://api.unsplash.com/collections/11649432/photos?page=${pageNumber}&per_page=20`
+      `https://api.unsplash.com/collections/1528792/photos?page=${pageNumber}&per_page=24`
     );
     return response.data;
   } catch (error) {
@@ -24,4 +24,19 @@ const fetchDefaultImageCollection = async (pageNumber) => {
   }
 };
 
-export { getAuthorizationClient, fetchDefaultImageCollection };
+const fetchSearchResult = async (pageNumber, query) => {
+  try {
+    const response = await getAuthorizationClient().get(
+      `https://api.unsplash.com/search/photos?page=${pageNumber}&query=${query}`
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export {
+  getAuthorizationClient,
+  fetchDefaultImageCollection,
+  fetchSearchResult,
+};
