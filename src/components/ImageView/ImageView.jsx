@@ -19,7 +19,7 @@ function ImageView({ isHomePage, searchQuery, pageNumber, setPageNumber }) {
         updatePageNumber();
       }
     }),
-    { threshold: 0, rootMargin: "-150px" }
+    { threshold: 1.0 }
   );
 
   const updatePageNumber = () => {
