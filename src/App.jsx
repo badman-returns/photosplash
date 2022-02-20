@@ -1,5 +1,6 @@
 import { lazy, Suspense, useState, useEffect } from "react";
 import Navbar from "./components/Navbar/Navbar";
+import Loader from "./components/Loader/Loader";
 const ImageView = lazy(() => import("./components/ImageView/ImageView"));
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
         setSearchQuery={setSearchQuery}
         setPageNumber={setPageNumber}
       />
-      <Suspense fallback={<div>Loading</div>}>
+      <Suspense fallback={<Loader />}>
         <ImageView
           isHomePage={isHomePage}
           searchQuery={searchQuery}

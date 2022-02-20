@@ -79,8 +79,6 @@ function ImageView({ isHomePage, searchQuery, pageNumber, setPageNumber }) {
       }
     };
   }, [intersection]);
-  const loadPages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
   return (
     <>
       <div className="view-container">
@@ -89,12 +87,8 @@ function ImageView({ isHomePage, searchQuery, pageNumber, setPageNumber }) {
           images.map((image) => {
             return <ImageCard image={image} key={image.id} />;
           })}
-
-        {loading &&
-          loadPages.map((num) => {
-            return <Loader />;
-          })}
       </div>
+      {loading && <Loader />}
 
       {<div ref={setIntersection}></div>}
     </>

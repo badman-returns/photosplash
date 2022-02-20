@@ -3,7 +3,6 @@ import axios from "axios";
 
 // dotenv.config();
 
-const baseURL = process.env.REACT_APP_BASE_URL;
 const accessKey = "FZpIl7feLseFHwV4DScQqiaVULO54C7GRBiqlmDrxdI";
 
 const getAuthorizationClient = () =>
