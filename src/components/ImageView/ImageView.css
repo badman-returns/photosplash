@@ -1,7 +1,7 @@
 .view-container {
   margin: 0rem 2rem 0rem 2rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 300px;
   gap: 15px;
   padding-bottom: 40px;
