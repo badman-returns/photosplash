@@ -1,9 +1,7 @@
 import axios from "axios";
-// const dotenv = require("dotenv");
 
-// dotenv.config();
-
-const accessKey = "FZpIl7feLseFHwV4DScQqiaVULO54C7GRBiqlmDrxdI";
+const baseURL = process.env.REACT_APP_BASE_URL;
+const accessKey = process.env.REACT_APP_ACCESS_KEY;
 
 const getAuthorizationClient = () =>
   axios.create({
@@ -15,7 +13,7 @@ const getAuthorizationClient = () =>
 const fetchDefaultImageCollection = async (pageNumber) => {
   try {
     const response = await getAuthorizationClient().get(
-      `https://api.unsplash.com/collections/1528792/photos?page=${pageNumber}&per_page=24`
+      `${baseURL}/collections/1528792/photos?page=${pageNumber}&per_page=24`
     );
     return response.data;
   } catch (error) {
@@ -26,7 +24,7 @@ const fetchDefaultImageCollection = async (pageNumber) => {
 const fetchSearchResult = async (pageNumber, query) => {
   try {
     const response = await getAuthorizationClient().get(
-      `https://api.unsplash.com/search/photos?page=${pageNumber}&query=${query}`
+      `${baseURL}/search/photos?page=${pageNumber}&query=${query}`
     );
     return response.data;
   } catch (error) {

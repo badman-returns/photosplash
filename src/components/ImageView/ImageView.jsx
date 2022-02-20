@@ -4,6 +4,7 @@ import {
   fetchSearchResult,
 } from "../../service/base.service";
 import ImageCard from "../ImageCard/ImageCard";
+import Modal from "../Modal/Modal";
 import Loader from "../Loader/Loader";
 import "./ImageView.css";
 
@@ -11,6 +12,7 @@ function ImageView({ isHomePage, searchQuery, pageNumber, setPageNumber }) {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [intersection, setIntersection] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const observer = useRef(
     new IntersectionObserver((entries) => {
@@ -85,10 +87,19 @@ function ImageView({ isHomePage, searchQuery, pageNumber, setPageNumber }) {
         {!loading &&
           images.length > 0 &&
           images.map((image) => {
-            return <ImageCard image={image} key={image.id} />;
+            return (
+              <ImageCard
+                image={image}
+                key={image.id}
+                setSelectedImage={setSelectedImage}
+              />
+            );
           })}
       </div>
       {loading && <Loader />}
+      {selectedImage && (
+        <Modal image={selectedImage} setSelectedImage={setSelectedImage} />
+      )}
 
       {!loading && <div ref={setIntersection}></div>}
     </>

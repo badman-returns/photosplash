@@ -1,8 +1,7 @@
 import React from "react";
 import "./ImageCard.css";
 
-function ImageCard({ image, loading }) {
-  // console.log(image);
+function ImageCard({ image, loading, setSelectedImage }) {
   return (
     <div className="card">
       {!loading && (
@@ -10,6 +9,13 @@ function ImageCard({ image, loading }) {
           className="grid-image"
           src={image.urls.thumb}
           alt={image.alt_description}
+          onClick={(e) => {
+            if (e.target.tagName === "IMG") {
+              if (window.screen.width >= 768) {
+                setSelectedImage(image);
+              }
+            }
+          }}
         />
       )}
     </div>

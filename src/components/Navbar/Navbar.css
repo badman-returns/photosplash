@@ -10,7 +10,7 @@
   z-index: 99;
 }
 
-.logo-container {
+.brand-container {
   display: flex;
   padding: 8px;
   justify-content: center;
@@ -18,7 +18,16 @@
   font-weight: 600;
   font-family: "Open Sans";
   color: #000;
+}
+
+.brand-container {
   cursor: pointer;
+}
+
+.logo {
+  margin-top: 5px;
+  width: 2rem;
+  height: 2rem;
 }
 
 .search-container {
@@ -36,9 +45,11 @@
 
 .search-icon {
   position: relative;
-  left: -2.5rem;
-  color: rgb(85, 85, 85);
+  left: -3.5rem;
+  width: 1.5rem;
+  /* color: rgb(85, 85, 85); */
   cursor: pointer;
+  color: #bdbdbd;
 }
 
 .search-field {
@@ -64,4 +75,9 @@
   font-size: 17px;
   cursor: pointer;
   font-weight: 400;
+}
+
+.filter-button:hover {
+  background-color: #5cb113;
+  color: white;
 }
