@@ -1,10 +1,13 @@
 import React, { useRef, useEffect, useState } from "react";
-import { fetchDefaultImageCollection } from "../../service/base.service";
+import {
+  fetchDefaultImageCollection,
+  fetchSearchResult,
+} from "../../service/base.service";
 import ImageCard from "../ImageCard/ImageCard";
+import Loader from "../Loader/Loader";
 import "./ImageView.css";
 
-function ImageView() {
-  const [pageNumber, setPageNumber] = useState(1);
+function ImageView({ isHomePage, searchQuery, pageNumber, setPageNumber }) {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [intersection, setIntersection] = useState(null);
@@ -15,7 +18,8 @@ function ImageView() {
       if (first.isIntersecting) {
         updatePageNumber();
       }
-    })
+    }),
+    { threshold: 0, rootMargin: "-150px" }
   );
 
   const updatePageNumber = () => {
@@ -26,16 +30,40 @@ function ImageView() {
     setLoading(true);
     const imageResponse = await fetchDefaultImageCollection(pageNumber);
     if (imageResponse) {
-      let allImages = new Set([...images, ...imageResponse]);
-      setImages([...allImages]);
+      if (pageNumber > 1) {
+        let allImages = new Set([...images, ...imageResponse]);
+        setImages([...allImages]);
+      } else {
+        setImages(null);
+        setImages(imageResponse);
+      }
+      setLoading(false);
+    }
+  };
+
+  const getPhotosFromSearchQuery = async () => {
+    setLoading(true);
+    const imageResponse = await fetchSearchResult(pageNumber, searchQuery);
+    if (imageResponse) {
+      if (pageNumber > 1) {
+        let allImages = new Set([...images, ...imageResponse.results]);
+        setImages([...allImages]);
+      } else {
+        setImages(null);
+        setImages(imageResponse.results);
+      }
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    getPhotosForHomePage();
+    if (isHomePage === false) {
+      getPhotosFromSearchQuery();
+    } else {
+      getPhotosForHomePage();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pageNumber]);
+  }, [pageNumber, isHomePage]);
 
   useEffect(() => {
     const currentElement = intersection;
@@ -51,15 +79,23 @@ function ImageView() {
       }
     };
   }, [intersection]);
+  const loadPages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
     <>
       <div className="view-container">
-        {images.length > 0 &&
+        {!loading &&
+          images.length > 0 &&
           images.map((image) => {
-            return <ImageCard loading={loading} image={image} key={image.id} />;
+            return <ImageCard image={image} key={image.id} />;
+          })}
+
+        {loading &&
+          loadPages.map((num) => {
+            return <Loader />;
           })}
       </div>
+
       {<div ref={setIntersection}></div>}
     </>
   );
