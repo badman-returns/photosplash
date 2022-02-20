@@ -1,0 +1,30 @@
+.loader {
+  background-color: rgb(215, 255, 191);
+  border-radius: 15px;
+  outline: none;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  object-fit: cover;
+  border-radius: 20px;
+  animation-name: loading;
+  animation-duration: 5s;
+}
+
+@keyframes loading {
+  0% {
+    background-color: rgb(247, 247, 247);
+  }
+  25% {
+    background-color: rgb(196, 196, 196);
+  }
+  50% {
+    background-color: rgb(177, 180, 176);
+  }
+  75% {
+    background-color: rgb(157, 160, 156);
+  }
+  100% {
+    background-color: rgb(105, 105, 105);
+  }
+}
