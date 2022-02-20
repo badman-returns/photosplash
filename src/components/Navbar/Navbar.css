@@ -7,6 +7,7 @@
   position: sticky;
   display: flex;
   flex-direction: column;
+  z-index: 99;
 }
 
 .logo-container {
@@ -17,6 +18,7 @@
   font-weight: 600;
   font-family: "Open Sans";
   color: #5cb113;
+  cursor: pointer;
 }
 
 .search-container {
@@ -30,6 +32,13 @@
   display: flex;
   justify-content: space-around;
   flex-grow: 3;
+}
+
+.search-icon {
+  position: relative;
+  left: -2.5rem;
+  color: rgb(85, 85, 85);
+  cursor: pointer;
 }
 
 .search-field {
