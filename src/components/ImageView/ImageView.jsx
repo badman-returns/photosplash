@@ -90,7 +90,7 @@ function ImageView({ isHomePage, searchQuery, pageNumber, setPageNumber }) {
       </div>
       {loading && <Loader />}
 
-      {<div ref={setIntersection}></div>}
+      {!loading && <div ref={setIntersection}></div>}
     </>
   );
 }
