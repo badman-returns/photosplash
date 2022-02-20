@@ -17,7 +17,7 @@
   font-size: 35px;
   font-weight: 600;
   font-family: "Open Sans";
-  color: #5cb113;
+  color: #000;
   cursor: pointer;
 }
 
@@ -42,23 +42,26 @@
 }
 
 .search-field {
-  width: 70%;
+  width: 100%;
+  /* margin: 0px 10px 0 5px; */
   height: 20px;
   padding: 10px 10px;
   border: 1px solid #bdbdbd;
   border-radius: 20px;
   outline: none;
   padding-left: 1.5rem;
-  font-size: 18px;
+  font-size: 17px;
 }
 
 .filter-button {
-  width: 10%;
-  border: 1px solid #bdbdbd;
+  width: 100px;
+  border: 1px solid #5cb113;
+  margin: 0 5px 0 5px;
   border-radius: 20px;
   outline: none;
-  background-color: #5cb113;
-  color: #fff;
-  font-size: 19px;
-  font-weight: 500;
+  background-color: #fff;
+  color: #000;
+  font-size: 17px;
+  cursor: pointer;
+  font-weight: 400;
 }
