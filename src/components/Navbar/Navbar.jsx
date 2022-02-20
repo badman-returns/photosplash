@@ -39,9 +39,6 @@ function Navbar({ setIsHomePage, setSearchQuery, isHomePage, setPageNumber }) {
             onChange={(e) => setSearch(e.target.value)}
             ref={searchRef}
           />
-          <button type="submit" className="filter-button" onClick={handleQuery}>
-            Search
-          </button>
           {!isHomePage && <button className="filter-button">Filter</button>}
         </form>
       </div>
