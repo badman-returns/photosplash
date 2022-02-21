@@ -10,13 +10,13 @@
 
 @media screen and (max-width: 1920px) {
   .view-container {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
 @media screen and (max-width: 1400px) {
   .view-container {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -39,6 +39,9 @@
 }
 
 @media screen and (max-width: 576px) {
+  .view-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
   .view-container-sm {
     margin: 0rem 1rem 0rem 2rem;
   }
