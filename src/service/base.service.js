@@ -24,7 +24,10 @@ const fetchDefaultImageCollection = async (pageNumber) => {
 const fetchSearchResult = async (pageNumber, query) => {
   try {
     const response = await getAuthorizationClient().get(
-      `${baseURL}/search/photos?page=${pageNumber}&query=${query}`
+      `${baseURL}/search/photos?${query}&${new URLSearchParams({
+        page: pageNumber,
+        per_page: 24,
+      })}`
     );
     return response.data;
   } catch (error) {

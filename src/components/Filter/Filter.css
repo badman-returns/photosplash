@@ -1,0 +1,33 @@
+.filter-container {
+  margin: 1rem 2rem 1rem 2rem;
+  max-width: 100%;
+  height: 180px;
+  border: 1.5px solid #3db46d;
+  border-radius: 20px;
+  background-color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.5fr 400px;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  left: 0;
+  position: relative;
+}
+.clear-filters-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.clear-filters-btn {
+  width: 8rem;
+  padding: 0.5rem;
+  font-size: 14px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: #3db46d;
+  color: #fff;
+}
