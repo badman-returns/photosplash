@@ -30,3 +30,27 @@
   background-color: #3db46d;
   color: #fff;
 }
+
+@media screen and (max-width: 576px) {
+  .filter-container {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .filter-category {
+    padding: 0rem;
+  }
+
+  .filter-container > * {
+    font-size: 14px;
+  }
+
+  .clear-filters-container {
+    align-items: flex-end;
+  }
+
+  #portrait {
+    margin-left: 2.8rem;
+  }
+}

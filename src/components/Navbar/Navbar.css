@@ -10,6 +10,18 @@
   z-index: 99;
 }
 
+.nav-container-fl {
+  background-color: white;
+  height: 20rem;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  z-index: 99;
+}
+
 .brand-container {
   display: flex;
   padding: 8px;
@@ -45,16 +57,14 @@
 
 .search-icon {
   position: relative;
-  left: -3.5rem;
+  left: -2.5rem;
   width: 1.5rem;
-  /* color: rgb(85, 85, 85); */
   cursor: pointer;
   color: #bdbdbd;
 }
 
 .search-field {
   width: 100%;
-  /* margin: 0px 10px 0 5px; */
   height: 20px;
   padding: 10px 10px;
   border: 1px solid #bdbdbd;
@@ -77,7 +87,53 @@
   font-weight: 400;
 }
 
-.filter-button:hover {
-  background-color: #5cb113;
-  color: white;
+.filter-icon {
+  width: 2rem;
+  display: none;
+}
+
+@media screen and (max-width: 1200px) {
+  .filter-container {
+    grid-template-columns: 1fr 1fr 1.5fr 300px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .filter-container {
+    grid-template-columns: 1fr 1fr 1.5fr 180px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .filter-container {
+    height: 380px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .nav-container-fl {
+    height: 25rem;
+  }
+
+  #portrait {
+    margin-left: 3.2rem;
+  }
+}
+
+@media screen and (max-width: 765px) {
+  .filter-icon {
+    display: inline;
+  }
+  .filter-text {
+    display: none;
+  }
+
+  .brand-name {
+    display: none;
+  }
+
+  .filter-button {
+    width: 90px;
+  }
+  .nav-container-fl {
+    height: 32rem;
+  }
 }

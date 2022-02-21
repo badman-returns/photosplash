@@ -90,7 +90,7 @@ function Navbar({ setIsHomePage, setSearchQuery, isHomePage, setPageNumber }) {
   };
 
   return (
-    <div className="nav-container">
+    <div className={!showFilters ? "nav-container" : "nav-container-fl"}>
       <div className="brand-container">
         <span className="logo-container" onClick={returnHomePage}>
           <img
@@ -120,7 +120,12 @@ function Navbar({ setIsHomePage, setSearchQuery, isHomePage, setPageNumber }) {
               className="filter-button"
               onClick={() => setShowFilters(!showFilters)}
             >
-              Filter
+              <span className="filter-text">Filter</span>
+              <img
+                src={publicPath + "/filter.svg"}
+                className="filter-icon"
+                alt="filter-button"
+              />
             </button>
           )}
         </form>
