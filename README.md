@@ -1,5 +1,7 @@
 # Photosplash
 
+![screenshot](https://github.com/tsgoswami/photosplash/blob/master/photosplash.jpg)
+
 Photosplash is a photo search application built using React and Unsplash API. Features include -
 
 - Explore photos
