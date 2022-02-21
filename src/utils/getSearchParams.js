@@ -19,6 +19,5 @@ export const getSearchParams = (query, order_by, color, orientation) => {
   ) {
     searchParamsObj.orientation = orientation;
   }
-
   return new URLSearchParams(searchParamsObj);
 };

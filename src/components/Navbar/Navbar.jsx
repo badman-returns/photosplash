@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
 import Filters from "../Filter/Filter";
 import { getSearchParams } from "../../utils/getSearchParams";
 import "./Navbar.css";
@@ -11,40 +12,46 @@ function Navbar({ setIsHomePage, setSearchQuery, isHomePage, setPageNumber }) {
   const [color, setColor] = useState("any_color");
   const [orientation, setOrientation] = useState("any");
   const [showFilters, setShowFilters] = useState(false);
-  const searchRef = useRef();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   const handleQuery = (e) => {
     e.preventDefault();
     if (search !== null && search !== undefined) {
-      setIsHomePage(false);
-      const searchQuery = getSearchParams(search);
-      console.log(searchQuery);
-      setSearchQuery(searchQuery);
-      setPageNumber(1);
+      const searchQueryParams = getSearchParams(
+        search,
+        sortBy,
+        color,
+        orientation
+      );
+      navigate(`/search?${searchQueryParams}`);
     }
   };
 
-  const handleState = () => {
-    if (!isHomePage) {
-      setPageNumber(1);
-      setIsHomePage(true);
-      searchRef.current.value = "";
-      setSearch(null);
-    }
+  const returnHomePage = () => {
+    setPageNumber(1);
+    navigate("/");
   };
 
   function filter(e) {
     if (e) {
       e.preventDefault();
     }
-    console.log(search);
     if (search !== null && search !== undefined) {
-      const searchQuery = getSearchParams(search, sortBy, color, orientation);
-      console.log(searchQuery);
-      setSearchQuery(searchQuery);
       setPageNumber(1);
+      const searchQuery = getSearchParams(search, sortBy, color, orientation);
+      navigate(`/search?${searchQuery}`);
     }
   }
+
+  useEffect(() => {
+    if (location.pathname.includes("/search")) {
+      setSearch(searchParams.get("query"));
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname]);
 
   useEffect(() => {
     filter();
@@ -85,7 +92,7 @@ function Navbar({ setIsHomePage, setSearchQuery, isHomePage, setPageNumber }) {
   return (
     <div className="nav-container">
       <div className="brand-container">
-        <span className="logo-container" onClick={handleState}>
+        <span className="logo-container" onClick={returnHomePage}>
           <img
             src={process.env.PUBLIC_URL + "/logo.png"}
             alt="logo"
@@ -99,8 +106,8 @@ function Navbar({ setIsHomePage, setSearchQuery, isHomePage, setPageNumber }) {
           <input
             placeholder="Search"
             className="search-field"
+            value={search}
             onChange={(e) => setSearch(e.target.value)}
-            ref={searchRef}
           />
           <img
             src={publicPath + "/search.svg"}
@@ -108,7 +115,7 @@ function Navbar({ setIsHomePage, setSearchQuery, isHomePage, setPageNumber }) {
             className="search-icon"
             onClick={handleQuery}
           />
-          {!isHomePage && (
+          {location.pathname.includes("search") && (
             <button
               className="filter-button"
               onClick={() => setShowFilters(!showFilters)}
@@ -118,7 +125,8 @@ function Navbar({ setIsHomePage, setSearchQuery, isHomePage, setPageNumber }) {
           )}
         </form>
       </div>
-      {showFilters && !isHomePage && (
+
+      {showFilters && (
         <Filters
           isSortBySelected={isSortBySelected}
           handleSortByChange={handleSortByChange}

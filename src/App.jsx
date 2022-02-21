@@ -1,34 +1,28 @@
-import { lazy, Suspense, useState, useEffect } from "react";
-import Navbar from "./components/Navbar/Navbar";
-import Loader from "./components/Loader/Loader";
-const ImageView = lazy(() => import("./components/ImageView/ImageView"));
+import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage/HomePage";
+import SearchPage from "./pages/SearchPage/SearchPage";
 
 function App() {
-  const [isHomePage, setIsHomePage] = useState(true);
-  const [searchQuery, setSearchQuery] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [isHomePage, searchQuery]);
-
   return (
-    <>
-      <Navbar
-        setIsHomePage={setIsHomePage}
-        isHomePage={isHomePage}
-        setSearchQuery={setSearchQuery}
-        setPageNumber={setPageNumber}
-      />
-      <Suspense fallback={<Loader />}>
-        <ImageView
-          isHomePage={isHomePage}
-          searchQuery={searchQuery}
-          pageNumber={pageNumber}
-          setPageNumber={setPageNumber}
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <HomePage pageNumber={pageNumber} setPageNumber={setPageNumber} />
+          }
         />
-      </Suspense>
-    </>
+        <Route
+          path="search"
+          element={
+            <SearchPage pageNumber={pageNumber} setPageNumber={setPageNumber} />
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
 

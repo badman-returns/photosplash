@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import {
   fetchDefaultImageCollection,
   fetchSearchResult,
@@ -8,11 +9,12 @@ import Modal from "../Modal/Modal";
 import Loader from "../Loader/Loader";
 import "./ImageView.css";
 
-function ImageView({ isHomePage, searchQuery, pageNumber, setPageNumber }) {
+function ImageView({ pageNumber, setPageNumber }) {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [intersection, setIntersection] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
+  const location = useLocation();
 
   const observer = useRef(
     new IntersectionObserver((entries) => {
@@ -45,6 +47,8 @@ function ImageView({ isHomePage, searchQuery, pageNumber, setPageNumber }) {
 
   const getPhotosFromSearchQuery = async () => {
     setLoading(true);
+    const searchQuery = new URLSearchParams(location.search);
+    console.log(searchQuery);
     const imageResponse = await fetchSearchResult(pageNumber, searchQuery);
     if (imageResponse) {
       if (pageNumber > 1) {
@@ -59,13 +63,13 @@ function ImageView({ isHomePage, searchQuery, pageNumber, setPageNumber }) {
   };
 
   useEffect(() => {
-    if (isHomePage === false) {
+    if (location.pathname !== "/") {
       getPhotosFromSearchQuery();
     } else {
       getPhotosForHomePage();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pageNumber, isHomePage]);
+  }, [location.pathname, location.search, pageNumber]);
 
   useEffect(() => {
     const currentElement = intersection;
